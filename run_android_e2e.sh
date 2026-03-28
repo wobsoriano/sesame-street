@@ -15,6 +15,7 @@ for i in $(seq 1 $MAX_RETRIES); do
 
   set +e
   $HOME/.maestro/bin/maestro test .maestro/ \
+    --env=APP_ID="$APP_ID" \
     --format=junit \
     --output "report_attempt_${i}.xml"
   EXIT_CODE=$?

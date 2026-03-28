@@ -1,4 +1,4 @@
-appId: com.wobsoriano.sesame-street
+appId: ${APP_ID}
 name: Sign in with GitHub username and verify profile
 ---
 - launchApp:
