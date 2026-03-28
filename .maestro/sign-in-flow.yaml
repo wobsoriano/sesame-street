@@ -1,0 +1,24 @@
+appId: com.wobsoriano.sesame-street
+name: Sign in with GitHub username and verify profile
+---
+- launchApp:
+    clearState: true
+
+- assertVisible:
+    id: "github_username_input"
+
+- tapOn:
+    id: "github_username_input"
+- inputText: "octocat"
+
+- tapOn:
+    id: "sign_in_button"
+
+- assertVisible:
+    id: "profile_name"
+    timeout: 10000
+
+- assertVisible: "The Octocat"
+
+- assertVisible:
+    id: "profile_repos"
