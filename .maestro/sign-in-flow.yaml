@@ -14,8 +14,9 @@ name: Sign in with GitHub username and verify profile
 - tapOn:
     id: "sign_in_button"
 
-- assertVisible:
-    id: "profile_name"
+- extendedWaitUntil:
+    visible:
+      id: "profile_name"
     timeout: 10000
 
 - assertVisible: "The Octocat"
