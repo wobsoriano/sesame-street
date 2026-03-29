@@ -4,21 +4,22 @@ name: Sign in with Clerk native AuthView
 - launchApp:
     clearState: true
 
-# Wait for AuthView to render
+# Wait for native AuthView to render
 - extendedWaitUntil:
-    visible: "Email address"
+    visible: "Enter your email"
     timeout: 15000
 
-- tapOn: "Email address"
+- tapOn: "Enter your email"
 - inputText: ${TEST_EMAIL}
 
 - tapOn: "Continue"
 
+# After entering email, password field appears
 - extendedWaitUntil:
-    visible: "Password"
+    visible: "Enter your password"
     timeout: 10000
 
-- tapOn: "Password"
+- tapOn: "Enter your password"
 - inputText: ${TEST_PASSWORD}
 
 - tapOn: "Continue"
