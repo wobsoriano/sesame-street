@@ -1,25 +1,29 @@
 appId: ${APP_ID}
-name: Sign in with GitHub username and verify profile
+name: Sign in with Clerk native AuthView
 ---
 - launchApp:
     clearState: true
 
-- assertVisible:
-    id: "github_username_input"
+# Wait for AuthView to render
+- extendedWaitUntil:
+    visible: "Email address"
+    timeout: 15000
 
-- tapOn:
-    id: "github_username_input"
-- inputText: "octocat"
+- tapOn: "Email address"
+- inputText: ${TEST_EMAIL}
 
-- tapOn:
-    id: "sign_in_button"
+- tapOn: "Continue"
 
 - extendedWaitUntil:
-    visible:
-      id: "profile_name"
+    visible: "Password"
     timeout: 10000
 
-- assertVisible: "The Octocat"
+- tapOn: "Password"
+- inputText: ${TEST_PASSWORD}
 
-- assertVisible:
-    id: "profile_repos"
+- tapOn: "Continue"
+
+# Wait for signed-in state
+- extendedWaitUntil:
+    visible: "Welcome"
+    timeout: 15000

@@ -14,6 +14,8 @@ jobs:
   maestro-android:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY }}
 
     steps:
       - name: Checkout
@@ -66,7 +68,10 @@ jobs:
           script: |
             adb devices
             adb install android/app/build/outputs/apk/release/app-release.apk
-            ./run_android_e2e.sh com.wobsoriano.sesamestreet
+            export APP_ID=com.wobsoriano.sesamestreet
+            export TEST_EMAIL="${{ secrets.TEST_EMAIL }}"
+            export TEST_PASSWORD="${{ secrets.TEST_PASSWORD }}"
+            ./run_android_e2e.sh $APP_ID
 
       - name: Upload test artifacts
         if: success() || failure()
