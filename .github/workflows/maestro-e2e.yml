@@ -68,10 +68,7 @@ jobs:
           script: |
             adb devices
             adb install android/app/build/outputs/apk/release/app-release.apk
-            export APP_ID=com.wobsoriano.sesamestreet
-            export TEST_EMAIL="${{ secrets.TEST_EMAIL }}"
-            export TEST_PASSWORD="${{ secrets.TEST_PASSWORD }}"
-            ./run_android_e2e.sh $APP_ID
+            APP_ID=com.wobsoriano.sesamestreet TEST_EMAIL="${{ secrets.TEST_EMAIL }}" TEST_PASSWORD="${{ secrets.TEST_PASSWORD }}" ./run_android_e2e.sh com.wobsoriano.sesamestreet
 
       - name: Upload test artifacts
         if: success() || failure()
